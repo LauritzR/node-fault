@@ -1,61 +1,9 @@
-# My own os-faults documentation
+# Using Nodefault
 
-## Kill
+Make sure to import nodefault at the start of your os-faults script.
+`import nodefault as nf`
 
-### Kill service on all nodes
-
-os_faults.human_api(cloud_management, 'kill (service) service')
-
-### Kill service on one node
-
-os_faults.human_api(cloud_management, 'kill (service) service on (fqdn) node')
-
-## Terminate
-
-### Terminate service on all nodes
-
-os_faults.human_api(cloud_management, 'terminate (service) service')
-
-### Terminate service on one node
-
-os_faults.human_api(cloud_management, 'terminate (service) service on (fqdn) node')
-
-## Start
-
-### Start service on all nodes
-
-os_faults.human_api(cloud_management, 'start (service) service')
-
-### Start service on one node
-
-os_faults.human_api(cloud_management, 'start (service) service on (node) node')
-
-## Restart
-
-### Restart service on all nodes
-
-os_faults.human_api(cloud_management, 'restart (service) service')
-
-### Restart service on one node
-
-os_faults.human_api(cloud_management, 'restart (service) service on (node) node')
-
-## Reboot
-
-### Reboot all nodes
-
-os_faults.human_api(cloud_management, 'reboot all nodes')
-nf.nodeop(cloud_config,'reboot all')
-
-### Reboot one node
-
-os_faults.human_api(cloud_management, 'reboot (node) node')
-nf.nodeop(cloud_config,'reboot (node)')
-//also works with multiple nodes
-
-## Using Nodefault
-
-### nf.nodeop(cloud_config, instruction)
+## nf.nodeop(cloud_config, instruction)
 
 Cloud_config is the configuration of your setup (same as os-faults).
 
@@ -68,3 +16,9 @@ Example: nf.nodeop(cloud_config,'(op) (node)')
 *reset (cold restart of the machine)
 *shutdown
 *freeze (freezes the cpu activity)
+
+## Examples
+
+nf.nodeop(cloud_config,'shutdown compute1.node.net')
+
+nf.nodeop(cloud_config,'reboot all')
