@@ -60,11 +60,11 @@ cloud_config = {
 
 #cloud_management = os_faults.connect(cloud_config)
 #cloud_management.verify()
-#nf.setup(cloud_config)
+nf.setup(cloud_config)
 
 nf.nodeop(cloud_config,'reboot pc734.emublab.net')
 nf.nodeop(cloud_config,'reset pc724.emublab.net')
-nf.nodeop(cloud_config,'shutdown pc721.emublab.net')
+nf.nodeop(cloud_config,'freeze pc721.emublab.net')
 
 
 

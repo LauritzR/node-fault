@@ -31,11 +31,15 @@ def nodeop(config, command):
          print("%s %s" % (op, ip))
          try:
             os.system("ssh -i %s %s@%s ./ops/%s.sh" % (key, username, ip, op)) 
+         except:
+            print()
 
       elif e['fqdn'] in command:
          print("%s %s" % (op, ip))
          try:
             os.system("ssh -i %s %s@%s ./ops/%s.sh" % (key, username, ip, op)) 
+         except:
+            print()
    
 
 

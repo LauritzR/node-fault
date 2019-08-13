@@ -3,6 +3,8 @@
 Make sure to import nodefault at the start of your os-faults script.
 `import nodefault as nf`
 
+Additionally you have to run `nf.setup(config)` (with config being your os-faults configuration) in order to setup the nodes for fault injection.
+
 ## nf.nodeop(cloud_config, instruction)
 
 Cloud_config is the configuration of your setup (same as os-faults).
