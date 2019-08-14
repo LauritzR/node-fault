@@ -13,20 +13,8 @@ def setup(config):
 
 
 def nodeop(config, command):
-   if 'reboot' in command:
-      op = 'reboot'
-   elif 'shutdown' in command:
-      op = 'shutdown'
-   elif 'freeze' in command:
-      op = 'freeze'
-   elif 'reset' in command:
-      op = 'reset'  
-   elif 'oom' in command:
-      op = 'oom'
-   elif 'slowoom' in command:
-      op = 'slowoom'
-   else:
-      print('Please specify an operation.')
+
+   op = command.partition(' ')[0]
 
    for e in config['node_discover']['args']:
       ip = e['ip']   
