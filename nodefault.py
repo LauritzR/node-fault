@@ -23,6 +23,8 @@ def nodeop(config, command):
       op = 'reset'  
    elif 'oom' in command:
       op = 'oom'
+   elif 'slowoom' in command:
+      op = 'slowoom'
    else:
       print('Please specify an operation.')
 
@@ -43,7 +45,6 @@ def nodeop(config, command):
          try:
             print("%s %s" % (op, ip))
             os.system("ssh -i %s %s@%s screen 'bash -s' < ops/%s.sh" % (key, username, ip, op)) 
-            os.system(" ")
          except:
             print()
             
