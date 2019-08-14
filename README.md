@@ -11,5 +11,7 @@ With nodefault you can
 * reboot
 * freeze (stop cpu)
 * shutdown
+* oom (fill memory)
+* slowoom (slowly fill memory, 100MB/sec)
 
 your nodes.
