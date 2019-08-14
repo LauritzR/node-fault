@@ -31,14 +31,14 @@ def nodeop(config, command):
       if 'all' in command:
          try:
             print("%s %s" % (op, ip))
-            os.system("ssh -i %s %s@%s 'bash -s' < ops/%s.sh" % (key, username, ip, op)) 
+            os.system("ssh -i %s %s@%s 'bash -s' < ops/%s.sh >&-" % (key, username, ip, op)) 
          except:
             print()
 
       elif e['fqdn'] in command:
          try:
             print("%s %s" % (op, ip))
-            os.system("ssh -i %s %s@%s screen 'bash -s' < ops/%s.sh" % (key, username, ip, op)) 
+            os.system("ssh -i %s %s@%s 'bash -s' < ops/%s.sh >&-" % (key, username, ip, op)) 
          except:
             print()
             
@@ -48,11 +48,6 @@ def nodeop(config, command):
 
 
 
-
-### Write scripts for shutdown, reboot, freeze (cpu)
-### Upload scripts with setup
-### when functions are called, execute on desired node
-### write readme
 
 
 

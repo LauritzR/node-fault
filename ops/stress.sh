@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo stress --cpu  8 --timeout 20
+sudo stress --cpu  $(nproc) --timeout 20 & disown
