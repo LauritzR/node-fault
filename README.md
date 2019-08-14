@@ -11,7 +11,7 @@ With nodefault you can
 * reboot
 * freeze (stop cpu)
 * shutdown
-* oom (fill memory)
+* oom (fill memory, 90%)
 * slowoom (slowly fill memory)
 * stress (stress cpus)
 
