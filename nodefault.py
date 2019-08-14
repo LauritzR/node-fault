@@ -2,6 +2,9 @@ import os
 import json
 import psutil
 
+OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress"
+
+
 def setup(config):
    for e in config['node_discover']['args']:
       print("Preparing %s" % (e['fqdn']))
@@ -15,6 +18,9 @@ def setup(config):
 def nodeop(config, command):
 
    op = command.partition(' ')[0]
+
+   if op not in OPERATIONS:
+      print('Pleasespecify a valid operation.')
 
    for e in config['node_discover']['args']:
       ip = e['ip']   
