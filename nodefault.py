@@ -4,11 +4,12 @@ import psutil
 
 def setup(config):
    for e in config['node_discover']['args']:
+      print("Preparing %s" % (e['fqdn']))
       ip = e['ip']
       username = e['auth']['username']
       key = e['auth']['private_key_file']
-      os.system("scp -r -i %s ops %s@%s:." % (key, username, ip)) 
-      os.system("ssh -i %s %s@%s sudo apt-get install stress" % (key,username,ip)) 
+      os.system("scp -r -i %s ops %s@%s:. >&- " % (key, username, ip)) 
+      os.system("ssh -i %s %s@%s sudo apt-get install stress >&-" % (key,username,ip)) 
 
 
 def nodeop(config, command):
@@ -33,16 +34,19 @@ def nodeop(config, command):
       
       if 'all' in command:
          try:
-            os.system("ssh -i %s %s@%s ./ops/%s.sh" % (key, username, ip, op)) 
-         except:
             print("%s %s" % (op, ip))
+            os.system("ssh -i %s %s@%s 'bash -s' < ops/%s.sh" % (key, username, ip, op)) 
+         except:
+            print()
 
       elif e['fqdn'] in command:
-         print("%s %s" % (op, ip))
          try:
-            os.system("ssh -t -i %s %s@%s screen -m -d ./ops/%s.sh" % (key, username, ip, op)) 
-         except:
             print("%s %s" % (op, ip))
+            os.system("ssh -i %s %s@%s screen 'bash -s' < ops/%s.sh" % (key, username, ip, op)) 
+            os.system(" ")
+         except:
+            print()
+            
    
 
 
