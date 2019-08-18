@@ -35,6 +35,14 @@ def nodeop(config, command):
          except:
             print()
 
+      elif op == 'drop':
+         if 'all' in command:
+            for n in len(command.partition(' ')):
+               if command.partition(' ')[n] == 'on':
+                  on_ip = command.partition(' ')[n+1]
+         os.system("ssh -i %s %s@%s tcpkill %s >&-" % (key, username, on_ip, on_ip))
+
+
       elif e['fqdn'] in command:
          try:
             print("%s %s" % (op, ip))
