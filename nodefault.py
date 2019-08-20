@@ -27,6 +27,7 @@ def nodeop(config, command):
       username = e['auth']['username']   
       key = e['auth']['private_key_file']
 
+   
    # drop on ... except ...
 
       ### Block for dropping packets
@@ -34,8 +35,9 @@ def nodeop(config, command):
          get_on = False
          get_except = False
          excepted = ''
+         on = ''
 
-         for n in len(command.partition(' ')):
+         for n in range(len(command.partition(' '))):
             if get_on:
                on = command.partition(' ')[n]
                get_on = False
