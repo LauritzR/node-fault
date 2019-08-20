@@ -1,6 +1,8 @@
 import os
 import json
 import psutil
+import networkfaults as nw
+import hardwarefaults as hw
 
 OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop"
 
@@ -17,7 +19,7 @@ def setup(config):
 
 def nodeop(config, command):
 
-   op = command.partition(' ')[0]
+   op = command.partition(' ')[1]
 
    if op not in OPERATIONS:
       print('Pleasespecify a valid operation.')
@@ -26,74 +28,16 @@ def nodeop(config, command):
       ip = e['ip']   
       username = e['auth']['username']   
       key = e['auth']['private_key_file']
+      fqdn = e['fqdn']
 
-   
-   # drop on ... except ...
+      if 'network' in command:
+         if 'drop' in command:
+            nw.drop(command,ip,username,key)
+         elif 'slow' in command:
+            nw.slow(command,ip, fqdn, username,key)
 
-      ### Block for dropping packets
-      if op == 'drop':
-         get_on = False
-         get_except = False
-         excepted = ''
-         on = ''
-
-         for n in range(len(command.partition(' '))):
-            if get_on:
-               on = command.partition(' ')[n]
-               get_on = False
-            
-            if get_except:
-               excepted += ' '
-               excepted += command.partition(' ')[n]
-
-            if command.partition(' ')[n] == 'on':
-               get_on = True
-            if command.partition(' ')[n] == 'except':
-               get_except = True
-
-         ### execute on all nodes
-         if 'all' in on:
-            if excepted == '':
-               os.system("ssh -i %s %s@%s tcpkill host %s >&-" % (key, username, ip, ip))
-            else:
-               op = "ssh -i %s %s@%s tcpkill %s"
-               for j in excepted:
-                  op += ' and not '
-                  op += excepted.partition(' ')[j]
-
-               op += '>&-'
-               os.system("ssh -i %s %s@%s tcpkill host %s %s>&-" % (key, username, ip, on, op))
-
-         ### execute on ly on selected
-         elif ip in on:
-            if excepted == '':
-               os.system("ssh -i %s %s@%s tcpkill host %s >&-" % (key, username, ip, ip))
-            else:
-               op = "ssh -i %s %s@%s tcpkill %s"
-               for j in excepted:
-                  op += ' and not '
-                  op += excepted.partition(' ')[j]
-
-               op += '>&-'
-               os.system("ssh -i %s %s@%s tcpkill host %s %s>&-" % (key, username, ip, on, op))
-
-
-      elif 'all' in command:
-         try:
-            print("%s %s" % (op, ip))
-            os.system("ssh -i %s %s@%s 'bash -s' < ops/%s.sh >&-" % (key, username, ip, op)) 
-         except:
-            print()
-
-      
-
-      elif e['fqdn'] in command:
-         try:
-            print("%s %s" % (op, ip))
-            os.system("ssh -i %s %s@%s 'bash -s' < ops/%s.sh >&-" % (key, username, ip, op)) 
-         except:
-            print()
-            
+      if 'node' in command:
+         hw.execute(command, key, username, ip, fqdn,  op, e)
    
 
 
