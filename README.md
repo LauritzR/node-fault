@@ -14,5 +14,6 @@ With nodefault you can
 * oom (fill memory, 90%)
 * slowoom (slowly fill memory)
 * stress (stress cpus)
+* drop traffic (make exceptions for traffic between specific nodes)
 
 your nodes.
