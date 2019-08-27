@@ -13,11 +13,20 @@ Example: nf.nodeop(cloud_config,'(op) (node)')
 
 (node) can be the fqdn of a single node, a list of multiple nodes or simply 'all'.
 
-(op) is one of the following operations:
-*reboot
-*reset (cold restart of the machine)
-*shutdown
-*freeze (freezes the cpu activity)
+(op) has the following structure:
+The first part is the instruction type, either 'node ' or 'network'.
+The second part is one of the following instructions for 'node':
+* reboot
+* reset (cold restart of the machine)
+* shutdown
+* freeze (freezes the cpu activity)
+
+or for 'network':
+* drop (needs parameter for drop percentage, 0.01 = 1%)
+* slow (needs parameter for slow down in ms)
+
+At the end of each command is the name/ip of the node the command should be run on.
+'Node' operations support the 'all' parameter for commands which should be executed on all nodes.
 
 ## Examples
 
