@@ -5,10 +5,8 @@ import psutil
 
 def drop(command, ip, username, key):
 
-    perc = command.split()[2]
-    perc += "%"   
-    print(perc)
-    os.system("ssh -i %s %s@%s sudo tc qdisc change dev eno1 root netem loss %s" % (key, username, ip, perc))
+    perc = command.split()[2]  
+    os.system("ssh -i %s %s@%s sudo iptables -A INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc))
             
 
 def slow(command, ip, fqdn, username, key):
