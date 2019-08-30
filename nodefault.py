@@ -22,7 +22,7 @@ def nodeop(config, command):
    op = command.partition(' ')[1]
 
    if op not in OPERATIONS:
-      print('Pleasespecify a valid operation.')
+      print('Please specify a valid operation.')
 
    for e in config['node_discover']['args']:
       ip = e['ip']   
