@@ -4,7 +4,7 @@ import psutil
 import networkfaults as nw
 import hardwarefaults as hw
 
-OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop"
+OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop, slow"
 
 
 def setup(config):
@@ -23,21 +23,21 @@ def nodeop(config, command):
 
    if op not in OPERATIONS:
       print('Please specify a valid operation.')
+   else:
+      for e in config['node_discover']['args']:
+         ip = e['ip']   
+         username = e['auth']['username']   
+         key = e['auth']['private_key_file']
+         fqdn = e['fqdn']
 
-   for e in config['node_discover']['args']:
-      ip = e['ip']   
-      username = e['auth']['username']   
-      key = e['auth']['private_key_file']
-      fqdn = e['fqdn']
+         if 'network' in command:
+            if 'drop' in command:
+               nw.drop(command,ip,username,key)
+            elif 'slow' in command:
+               nw.slow(command,ip, fqdn, username,key)
 
-      if 'network' in command:
-         if 'drop' in command:
-            nw.drop(command,ip,username,key)
-         elif 'slow' in command:
-            nw.slow(command,ip, fqdn, username,key)
-
-      if 'node' in command:
-         hw.execute(command, key, username, ip, fqdn,  op, e)
+         if 'node' in command:
+            hw.execute(command, key, username, ip, fqdn,  op, e)
    
 
 
