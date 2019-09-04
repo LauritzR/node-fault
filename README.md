@@ -14,6 +14,7 @@ With nodefault you can
 * oom (fill memory, 90%)  !Needs to be executed seperately! 
 * slowoom (slowly fill memory) !Needs to be executed seperately! 
 * stress (stress cpus) !Needs to be executed seperately! 
-* drop traffic (make exceptions for traffic between specific nodes)
+* drop packets (make exceptions for traffic between specific nodes)
+* slow connection (specify delay time for answers)
 
 your nodes.
