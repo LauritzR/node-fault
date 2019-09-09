@@ -16,7 +16,7 @@
 
 * Get the machine's IP address
 * `nano local.conf`
-* \[[local|localrc]]
+* \[[local|localrc]]\
     HOST_IP=192.168.42.11\
     FIXED_RANGE=10.4.128.0/20\
     FLOATING_RANGE=155.98.36.128/25\
@@ -34,7 +34,7 @@
 
 * wait until the control node is finished
 * `nano local.conf`
-* \[[local|localrc]]
+* \[[local|localrc]]\
     HOST_IP=192.168.42.12 # change this per compute node\
     FIXED_RANGE=10.4.128.0/20\
     FLOATING_RANGE=155.98.36.128/25\
