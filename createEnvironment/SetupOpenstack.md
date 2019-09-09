@@ -17,14 +17,14 @@
 * Get the machine's IP address
 * `nano local.conf`
 * \[[local|localrc]]
-    HOST_IP=192.168.42.11
-    FIXED_RANGE=10.4.128.0/20
-    FLOATING_RANGE=155.98.36.128/25
-    LOGFILE=/opt/stack/logs/stack.sh.log
-    ADMIN_PASSWORD=labstack
-    DATABASE_PASSWORD=supersecret
-    RABBIT_PASSWORD=supersecret
-    SERVICE_PASSWORD=supersecret
+    HOST_IP=192.168.42.11\
+    FIXED_RANGE=10.4.128.0/20\
+    FLOATING_RANGE=155.98.36.128/25\
+    LOGFILE=/opt/stack/logs/stack.sh.log\
+    ADMIN_PASSWORD=labstack\
+    DATABASE_PASSWORD=supersecret\
+    RABBIT_PASSWORD=supersecret\
+    SERVICE_PASSWORD=supersecret\
     enable_plugin os-faults https://opendev.org/performa/os-faults master
 * `nano local.sh`
 * for i in \`seq 2 10`; do /opt/stack/nova/bin/nova-manage fixed reserve 10.4.128.$i; done
