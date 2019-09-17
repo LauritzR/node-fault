@@ -19,7 +19,7 @@ def setup(config):
 
 def nodeop(config, command):
 
-   op = command.partition(' ')[1]
+   op = command.split()[1]
 
    if op not in OPERATIONS:
       print('Please specify a valid operation.')
@@ -29,6 +29,9 @@ def nodeop(config, command):
          username = e['auth']['username']   
          key = e['auth']['private_key_file']
          fqdn = e['fqdn']
+
+
+         
 
          if 'network' in command:
             if 'drop' in command:
