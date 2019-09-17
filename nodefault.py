@@ -35,7 +35,7 @@ def nodeop(config, command):
 
          if 'network' in command:
             if 'drop' in command:
-               nw.drop(command,ip,username,key)
+               nw.drop(command,ip, fqdn, username,key)
             elif 'slow' in command:
                nw.slow(command,ip, fqdn, username,key)
 

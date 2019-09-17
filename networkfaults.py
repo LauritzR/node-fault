@@ -3,10 +3,10 @@ import json
 import psutil
 
 
-def drop(command, ip, username, key):
-
+def drop(command, ip, fqdn, username, key):
     perc = command.split()[2]  
-    os.system("ssh -i %s %s@%s sudo iptables -A INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc))
+    if ip in command or fqdn in command:
+        os.system("ssh -i %s %s@%s sudo iptables -A INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc))
             
 
 def slow(command, ip, fqdn, username, key):

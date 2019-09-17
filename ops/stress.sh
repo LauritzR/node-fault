@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo stress --cpu  $(nproc) & disown
+sudo stress --cpu  $(nproc)
