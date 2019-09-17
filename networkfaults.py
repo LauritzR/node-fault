@@ -7,6 +7,9 @@ def drop(command, ip, fqdn, username, key):
     perc = command.split()[2]  
     if ip in command or fqdn in command:
         os.system("ssh -i %s %s@%s sudo iptables -A INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc))
+        #os.system("ssh -i %s %s@%s sudo iptables -D INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc)) #remove rule
+
+        
             
 
 def slow(command, ip, fqdn, username, key):
