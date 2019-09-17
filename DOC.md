@@ -20,6 +20,8 @@ The second part is one of the following instructions for 'node':
 * reset (cold restart of the machine)
 * shutdown
 * freeze (freezes the cpu activity)
+* oom
+* slowoom
 
 or for 'network':
 * drop (needs parameter for drop percentage, 0.01 = 1%)
