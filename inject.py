@@ -171,10 +171,6 @@ cloud_management = os_faults.connect(cloud_config)
 cloud_management.verify()
 nf.setup(cloud_config)
 
-#nf.nodeop(cloud_config,'network drop 0.5 on pc734.emulab.net')
-#os_faults.human_api(cloud_management, 'poweroff pc734.emulab.net node')
-
-
 
 # OOM   SLOWOOM     STRESS
 nf.nodeop(cloud_config, 'node oom on pc462.emulab.net')
