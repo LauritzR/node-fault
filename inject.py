@@ -202,5 +202,3 @@ time.sleep(20)
 os_faults.human_api(cloud_management, 'start nova-compute service on pc470.emulab.net node')
 
 
-
-
