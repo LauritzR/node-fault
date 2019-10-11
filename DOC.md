@@ -24,7 +24,7 @@ The second part is one of the following instructions for 'node':
 * slowoom
 
 or for 'network':
-* drop (needs parameter for drop percentage, 0.01 = 1%)
+* drop (needs parameter for drop percentage, 0.01 = 1%; also possible to specify the source "network drop...from...on...")
 * slow (needs parameter for slow down in ms)
 
 At the end of each command is the name/ip of the node the command should be run on.

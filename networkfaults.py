@@ -5,12 +5,17 @@ import psutil
 
 def drop(command, ip, fqdn, username, key):
     perc = command.split()[2]  
-    if ip in command or fqdn in command:
-        print('drop %s on %s' % (perc, fqdn))
-        os.system("ssh -i %s %s@%s sudo iptables -A INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc))
-        #os.system("ssh -i %s %s@%s sudo iptables -D INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc)) #remove rule
 
-        
+    if 'from' in command:
+        if ip in command or fqdn in command:
+            source = command.split()[4]
+            print('drop %s on %s' % (perc, fqdn))
+            os.system("ssh -i %s %s@%s sudo iptables -A INPUT -s %s -m statistic --mode random --probability %s -j DROP" % (key, username, ip, source, perc))
+    else:
+        if ip in command or fqdn in command:
+            print('drop %s on %s' % (perc, fqdn))
+            os.system("ssh -i %s %s@%s sudo iptables -A INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc))
+            #os.system("ssh -i %s %s@%s sudo iptables -D INPUT -m statistic --mode random --probability %s -j DROP" % (key, username, ip, perc)) #remove rule
             
 
 def slow(command, ip, fqdn, username, key):
