@@ -21,7 +21,7 @@ The second part is one of the following instructions for 'node':
 * shutdown
 * freeze (freezes the cpu activity)
 * oom
-* slowoom
+* slowoom  (needs parameter for filling speed, default is 1; "node slowoom with speed 3 on ...")
 
 or for 'network':
 * drop (needs parameter for drop percentage, 0.01 = 1%; also possible to specify the source "network drop...from...on...")
