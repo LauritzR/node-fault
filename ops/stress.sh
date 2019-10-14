@@ -1,3 +1,5 @@
 #!/bin/bash
 
-sudo stress --cpu  $(nproc)*$1
+procs=$(bc -l <<< $(nproc)*$1)
+
+sudo stress -q --cpu  $procs
