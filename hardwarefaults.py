@@ -10,19 +10,14 @@ def execute(command, key, username, ip, fqdn, op, node):
         try:
             print("%s %s" % (op, ip))
             parameter = ''
-            if not op == 'slowoom':
-                if op == 'oom':
-                    parameter = command.split()[3]
-                
-                os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh &" % (key, username, ip, op, parameter)) 
-            else:
-                parameter = command.split()[5]
-                if not isinstance(parameter, int):
-                    parameter = 1
-                for i in range(parameter):
-                    os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh &" % (key, username, ip, op)) 
-
-
+            
+            if op == 'oom':
+                parameter = command.split()[2]
+            loop = command.split()[4]
+            if not isinstance(parameter, int):
+                loop = 1
+            for i in range(loop):
+                os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh %s &" % (key, username, ip, op, parameter)) 
         except:
             print()
 
@@ -30,12 +25,13 @@ def execute(command, key, username, ip, fqdn, op, node):
         try:
             print("%s %s" % (op, ip))
             parameter = ''
-
-            if op == 'oom':
-                parameter = command.split()[3]
-
-            os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh %s &" % (key, username, ip, op, parameter)) 
             
-
+            if op == 'oom':
+                parameter = command.split()[2]
+            loop = command.split()[4]
+            if not isinstance(parameter, int):
+                loop = 1
+            for i in range(loop):
+                os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh %s &" % (key, username, ip, op, parameter)) 
         except:
             print()

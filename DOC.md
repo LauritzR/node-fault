@@ -20,7 +20,7 @@ The second part is one of the following instructions for 'node':
 * reset (cold restart of the machine)
 * shutdown
 * freeze (freezes the cpu activity)
-* oom
+* oom (needs parameter for space that will be filled; "node oom 0.9 on ...")
 * slowoom  (needs parameter for filling speed, default is 1; "node slowoom with speed 3 on ...")
 
 or for 'network':
