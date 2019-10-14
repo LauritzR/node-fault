@@ -1,6 +1,7 @@
 import os
 import json
 import psutil
+import slowoom as so
 
 
 
@@ -12,28 +13,29 @@ def execute(command, key, username, ip, fqdn, op, node):
             
             if op == 'oom' or op == 'stress':
                 parameter = command.split()[2]
-            loop = command.split()[4]
-
+ 
             print("%s %s %s" % (op, ip, parameter))
-
-            if not isinstance(parameter, int):
-                loop = 1
-            for i in range(loop):
-                os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh %s &" % (key, username, ip, op, parameter)) 
+            os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh %s &" % (key, username, ip, op, parameter)) 
         except:
             print()
 
     elif fqdn in command or ip in command:
         try:
-            print("%s %s" % (op, ip))
             parameter = ''
             
-            if op == 'oom':
+            # get the parameters needed for oom and stress (memory  and cpu utilization)
+            if op == 'oom' or op == 'stress':
                 parameter = command.split()[2]
-            loop = command.split()[4]
-            if not isinstance(parameter, int):
-                loop = 1
-            for i in range(loop):
+            loop = 1
+
+            # if there is a speed parameter given and the operation is slowoom, set the speed
+            if command.split()[4].isdigit() and op == 'slowoom':
+                loop = command.split()[4]
+
+            print("%s %s %s %s" % (op, ip, parameter, loop))
+
+            # perform operation n times (higher speed = faster memory filling)
+            for i in range(int(loop)):
                 os.system("ssh -i %s %s@%s nohup 'bash -s' < ops/%s.sh %s &" % (key, username, ip, op, parameter)) 
         except:
             print()
