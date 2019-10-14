@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo stress --cpu  $(nproc)
+sudo stress --cpu  $(nproc)*$1

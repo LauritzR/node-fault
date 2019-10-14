@@ -8,12 +8,14 @@ def execute(command, key, username, ip, fqdn, op, node):
     
     if 'all' in command:
         try:
-            print("%s %s" % (op, ip))
             parameter = ''
             
-            if op == 'oom':
+            if op == 'oom' or op == 'stress':
                 parameter = command.split()[2]
             loop = command.split()[4]
+
+            print("%s %s %s" % (op, ip, parameter))
+
             if not isinstance(parameter, int):
                 loop = 1
             for i in range(loop):

@@ -173,9 +173,10 @@ nf.setup(cloud_config)
 
 
 # OOM   SLOWOOM     STRESS
-nf.nodeop(cloud_config, 'node oom on pc462.emulab.net')
-nf.nodeop(cloud_config, 'node slowoom on pc531.emulab.net')
-nf.nodeop(cloud_config, 'node stress on pc453.emulab.net')
+nf.n# OOM   SLOWOOM     STRESS
+nf.nodeop(cloud_config, 'node oom 0.9 on pc462.emulab.net')
+nf.nodeop(cloud_config, 'node slowoom with speed 5 on pc531.emulab.net')
+nf.nodeop(cloud_config, 'node stress 0.5 on pc453.emulab.net')
 
 
 # SHUTDOWN  REBOOT  RESET
@@ -189,7 +190,7 @@ nf.nodeop(cloud_config, 'network slow 100ms on pc411.emulab.net')
 nf.nodeop(cloud_config, 'network slow 300ms on pc451.emulab.net')
 nf.nodeop(cloud_config, 'network slow 1000ms on pc452.emulab.net')
 
-nf.nodeop(cloud_config, 'network drop 0.1 on pc416.emulab.net')
+nf.nodeop(cloud_config, 'network drop 0.1 from pc440.emulab.net on pc416.emulab.net')
 nf.nodeop(cloud_config, 'network drop 0.2 on pc440.emulab.net')
 nf.nodeop(cloud_config, 'network drop 0.5 on pc410.emulab.net')
 nf.nodeop(cloud_config, 'network drop 1 on pc413.emulab.net')
