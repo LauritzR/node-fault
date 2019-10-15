@@ -24,7 +24,7 @@ def execute(command, key, username, ip, fqdn, op, node):
             parameter = ''
             
             # get the parameters needed for oom and stress (memory  and cpu utilization)
-            if op == 'oom' or op == 'stress':
+            if op == 'oom' or 'stress' in op:
                 parameter = command.split()[2]
             loop = 1
 

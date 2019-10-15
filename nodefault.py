@@ -4,7 +4,7 @@ import psutil
 import networkfaults as nw
 import hardwarefaults as hw
 
-OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop, slow"
+OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop, slow, stressdisk"
 
 
 def setup(config):
@@ -15,6 +15,7 @@ def setup(config):
       key = e['auth']['private_key_file']
       os.system("scp -r -i %s ops %s@%s:. >&- " % (key, username, ip)) 
       os.system("ssh -i %s %s@%s sudo apt-get install stress >&-" % (key,username,ip)) 
+      os.system("ssh -i %s %s@%s sudo apt-get install stress-ng >&-" % (key,username,ip)) 
 
 
 def nodeop(config, command):
