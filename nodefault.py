@@ -40,7 +40,7 @@ def nodeop(config, command):
             elif 'slow' in command:
                nw.slow(command,ip, fqdn, username,key)
             else:
-               nw.slowresponse(command,ip, fqdn, username,key)
+               nw.delay(command,ip, fqdn, username,key)
 
          if 'node' in command:
             hw.execute(command, key, username, ip, fqdn,  op, e)

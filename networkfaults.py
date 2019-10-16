@@ -38,7 +38,7 @@ def slow(command, ip, fqdn, username, key):
             print
 
 
-def slowresponse(command, ip, fqdn, username, key):
+def delay(command, ip, fqdn, username, key):
     delay = command.split()[2]
     if ip in command or fqdn in command:
         try:
