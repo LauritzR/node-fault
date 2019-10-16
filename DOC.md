@@ -27,7 +27,8 @@ The second part is one of the following instructions for 'node':
 
 or for 'network':
 * drop (needs parameter for drop percentage, 0.01 = 1%; also possible to specify the source "network drop...from...on...")
-* slow (needs parameter for slow down in ms)
+* slowresponse (needs parameter for slow down in ms)
+* slow (i.e. "network slow 1000 between ... and ..." ; 1000 is the parameter specifying the packet size)
 
 At the end of each command is the name/ip of the node the command should be run on.
 'Node' operations support the 'all' parameter for commands which should be executed on all nodes.

@@ -4,7 +4,7 @@ import psutil
 import networkfaults as nw
 import hardwarefaults as hw
 
-OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop, slow, stressdisk"
+OPERATIONS = "freeze, oom, reboot, reset, shutdown, slowoom, stress, drop, slow, stressdisk, slowresponse"
 
 
 def setup(config):
@@ -15,7 +15,7 @@ def setup(config):
       key = e['auth']['private_key_file']
       os.system("scp -r -i %s ops %s@%s:. >&- " % (key, username, ip)) 
       os.system("ssh -i %s %s@%s sudo apt-get install stress >&-" % (key,username,ip)) 
-      os.system("ssh -i %s %s@%s sudo apt-get install stress-ng >&-" % (key,username,ip)) 
+      os.system("ssh -i %s %s@%s sudo apt-get install hping3 >&-" % (key,username,ip)) 
 
 
 def nodeop(config, command):
@@ -39,6 +39,8 @@ def nodeop(config, command):
                nw.drop(command,ip, fqdn, username,key)
             elif 'slow' in command:
                nw.slow(command,ip, fqdn, username,key)
+            else:
+               nw.slowresponse(command,ip, fqdn, username,key)
 
          if 'node' in command:
             hw.execute(command, key, username, ip, fqdn,  op, e)
