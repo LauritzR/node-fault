@@ -15,4 +15,4 @@
 - `pip3 install os-faults`
 
 ## Move needed files
-- `scp hardwarefaults.py inject.py networkfaults.py nodefault.py slowoom.py config.json user@node:.`
+- ` scp -r hardwarefaults.py inject.py networkfaults.py nodefault.py slowoom.py config.json ops user@node:.`
