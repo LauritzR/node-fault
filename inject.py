@@ -2,6 +2,10 @@ import os_faults
 import logging
 import nodefault as nf
 import time
+import json
+import os
+import monitor
+import sys
 
 with open('config.json') as file:
     cloud_config = json.load(file)
@@ -10,35 +14,11 @@ cloud_management = os_faults.connect(cloud_config)
 cloud_management.verify()
 nf.setup(cloud_config)
 
+for n in cloud_config['node_discover']['args']:
+   os.system("ssh -i ~/.ssh/geni stack@%s python recover.py & disown" % (n['ip']))
 
-# OOM   SLOWOOM     STRESS
-nf.n# OOM   SLOWOOM     STRESS
-nf.nodeop(cloud_config, 'node oom 0.9 on pc462.emulab.net')
-nf.nodeop(cloud_config, 'node slowoom with speed 5 on pc531.emulab.net')
-nf.nodeop(cloud_config, 'node stress 0.5 on pc453.emulab.net')
+monitor.monitor(sys.argv[1],sys.argv[2])
 
+time.sleep(5)
 
-# SHUTDOWN  REBOOT  RESET
-nf.nodeop(cloud_config, 'node shutdown on pc409.emulab.net')
-nf.nodeop(cloud_config, 'node reboot on pc406.emulab.net')
-nf.nodeop(cloud_config, 'node reset on pc461.emulab.net')
-
-
-# SLOW  DROP
-nf.nodeop(cloud_config, 'network slow 100ms on pc411.emulab.net')
-nf.nodeop(cloud_config, 'network slow 300ms on pc451.emulab.net')
-nf.nodeop(cloud_config, 'network slow 1000ms on pc452.emulab.net')
-
-nf.nodeop(cloud_config, 'network drop 0.1 from pc440.emulab.net on pc416.emulab.net')
-nf.nodeop(cloud_config, 'network drop 0.2 on pc440.emulab.net')
-nf.nodeop(cloud_config, 'network drop 0.5 on pc410.emulab.net')
-nf.nodeop(cloud_config, 'network drop 1 on pc413.emulab.net')
-
-
-# KILL  TERMINATE   START
-os_faults.human_api(cloud_management, 'kill nova-compute service on pc470.emulab.net node')
-os_faults.human_api(cloud_management, 'terminate nova-compute service on pc404.emulab.net node')
-time.sleep(20)
-os_faults.human_api(cloud_management, 'start nova-compute service on pc470.emulab.net node')
-
-
+nf.nodeop(cloud_config, 'node oom 0.3 on all')

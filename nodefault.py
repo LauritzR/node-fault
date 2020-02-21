@@ -13,9 +13,11 @@ def setup(config):
       ip = e['ip']
       username = e['auth']['username']
       key = e['auth']['private_key_file']
-      os.system("scp -r -i %s ops %s@%s:. >&- " % (key, username, ip)) 
+      os.system("scp -r -i %s ops %s@%s:. >&- " % (key, username, ip))
+      os.system("scp -r -i %s recover.py %s@%s:. >&- " % (key, username, ip))
       os.system("ssh -i %s %s@%s sudo apt-get install stress >&-" % (key,username,ip)) 
-      os.system("ssh -i %s %s@%s sudo apt-get install hping3 >&-" % (key,username,ip)) 
+      os.system("ssh -i %s %s@%s sudo apt-get install hping3 >&-" % (key,username,ip))
+
 
 
 def nodeop(config, command):

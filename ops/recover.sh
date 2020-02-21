@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-iptables -P INPUT ACCEPT
-tc qdisc del dev eth0 root
+sudo iptables -P INPUT ACCEPT
+sudo tc qdisc del dev eno1 root
+sudo coldreboot

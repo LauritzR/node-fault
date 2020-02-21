@@ -21,8 +21,17 @@ def drop(command, ip, fqdn, username, key):
 
 def slow(command, ip, fqdn, username, key):
     parameter = command.split()[2]
-    target = command.split()[4]
-    source = command.split()[6]
+    t = command.split()[4]
+    s = command.split()[6]
+
+    with open('config.json') as file:
+        cloud_config = json.load(file)
+
+    for e in cloud_config['node_discover']['args']:
+        if str(e['ip'])==t:
+            target = e['conn']
+        if str(e['ip'])==s:
+            source = e['conn']
 
     if ip in source or fqdn in source:
         try:
@@ -44,11 +53,15 @@ def delay(command, ip, fqdn, username, key):
         try:
             print('slow %s with %s delay' % (fqdn, delay))
             os.system("ssh -i %s %s@%s sudo tc qdisc add dev eno1 root netem delay %s" % (key, username, ip, delay))
+            os.system("ssh -i %s %s@%s sudo tc qdisc add dev eno4 root netem delay %s" % (key, username, ip, delay))
+
         except:
             print
     elif 'all' in command:
         try:
             print('slow with %s delay' % (delay))
-            os.system("ssh -i %s %s@%s sudo tc qdisc add dev eno1 root netem delay 100ms" % (key, username, ip, delay))
+            os.system("ssh -i %s %s@%s sudo tc qdisc add dev eno1 root netem delay %s" % (key, username, ip, delay))
+            os.system("ssh -i %s %s@%s sudo tc qdisc add dev eno4 root netem delay %s" % (key, username, ip, delay))
+
         except:
             print
