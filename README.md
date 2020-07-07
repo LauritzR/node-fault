@@ -11,9 +11,9 @@ With nodefault you can
 * reboot
 * freeze (stop cpu)
 * shutdown
-* oom (fill memory, 90%)  !Needs to be executed seperately! 
-* slowoom (slowly fill memory) !Needs to be executed seperately! 
-* stress (stress cpus) !Needs to be executed seperately! 
+* oom (fill memory, 90%) 
+* slowoom (slowly fill memory) 
+* stress (stress cpus)
 * stressdisk (specify number of workers performing read/write operations; can be used to either stress IO or fill storage)
 * drop packets (make exceptions for traffic between specific nodes)
 * slow connection (specify packet size for forced traffic)
