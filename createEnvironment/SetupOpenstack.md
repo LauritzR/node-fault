@@ -8,7 +8,7 @@
 * `sudo su stack`
 * `cd`
 * `mkdir ~/.ssh; chmod 700 ~/.ssh`
-* `echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+7IY6mQI3tAojpeseSaSHTgN+HT8Xnhsus8FICbU6p5T2SRtEF2N4c5LV4/zV5Qvnd/VR/wHMdfWVuaMqAPlIDeuxztRvZUrkRbcwiD1M8xFE9iTfgHF9zcrDHRUQ71LSXErrYaJ9XYDL1UJifMrOdSPQi5HncgtNMmxjv9VUS8k+XV4TcMXoUKi5IF5QUQdaVuEmQYkj1Wk0UyKHjRnTC79T0LfXPbCFPUM4PLvO1DbGCmGz/85xfhBW8jhRt679+3dXPlvcgSEB17MWOC59mWTpLmXB16jbjpRNNzSTl/VcbZBUMtFgGV6mEWc8A814oigbuBLKAE9vVLPyZ5T9 LauritzRasbach@Lauritzs-MacBook-Pro.local" > ~/.ssh/authorized_keys`
+* `echo "ssh-rsa ...key..." > ~/.ssh/authorized_keys`
 * `git clone https://opendev.org/openstack/devstack`
 * `cd devstack`
 
